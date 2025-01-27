@@ -5,8 +5,7 @@ import "./Navbar.css"
 const Navbard = () => {
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      <h1>Navbard</h1>
+  
       <nav className="navbar">
             <div className="navbar-brand">
                 <Link to="/" className="navbar-logo">Car IA</Link>
@@ -20,7 +19,7 @@ const Navbard = () => {
                 </ul>
             </div>
         </nav>
-    </div>
+    
   );
 };
 
