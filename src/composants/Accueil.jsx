@@ -46,7 +46,7 @@ const Accueil = () => {
         <div className="right-accueil">
           <h2>Bienvenue !</h2>
           <p>
-            Découvrez notre gamme de services révolutionnaires qui transforment vos expériences d'achat. Nous vous accompagnons à chaque étape.
+            Découvrez notre gamme de services révolutionnaires qui transforment vos expériences d&apos;achat. Nous vous accompagnons à chaque étape.
           </p>
           <button className="cta-button">Explorez Maintenant</button>
         </div>
