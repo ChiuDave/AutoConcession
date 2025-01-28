@@ -1,0 +1,79 @@
+/* Container for the entire page */
+/* Entire page container */
+.accueil-container {
+    height: 100vh;
+    overflow-y: scroll; /* Make the page scrollable */
+    scroll-behavior: smooth; /* Smooth scrolling */
+  }
+  
+  /* Navbar */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure navbar stays on top */
+    background-color: #333; /* Navbar background color */
+    transition: transform 0.3s ease; /* Smooth hide/show animation */
+  }
+  
+  /* Navbar visible state */
+  .navbar-visible {
+    transform: translateY(0); /* Fully visible */
+  }
+  
+  /* Navbar hidden state */
+  .navbar-hidden {
+    transform: translateY(-100%); /* Move it out of view */
+  }
+  
+  /* Main content */
+  .accueil-box {
+    margin-top: 60px; /* Add space for the navbar height */
+    display: flex;
+    height: auto;
+    flex-direction: row;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .left-accueil,
+  .right-accueil {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .left-accueil h1,
+  .right-accueil h2 {
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  /* Optional: Add spacing for smaller screens */
+  @media (max-width: 768px) {
+    .accueil-box {
+      flex-direction: column; /* Stack sections vertically */
+    }
+  
+    .left-accueil,
+    .right-accueil {
+      flex: none;
+      width: 100%; /* Full width for each section */
+    }
+  }
+  
