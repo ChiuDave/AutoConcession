@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
+import ContacterModal from "../ContacterModal";
 
 const Accueil = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -124,9 +126,17 @@ const Accueil = () => {
           <p className="text-lg mt-4 max-w-3xl">
             Vous avez une question ? Notre équipe est là pour vous aider à chaque étape.
           </p>
-          <button className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition">
+          {/* Contact Button */}
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
+          >
             Nous Contacter
           </button>
+
+          {/* Contact Modal */}
+          <ContacterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
         </section>
       </div>
 
