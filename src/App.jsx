@@ -1,20 +1,20 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-//import './App.css'
-import Accueil from './composants/Accueil';
-import Dashboard from './composants/Dashboard';
-import Details from './composants/Details';
+import Accueil from './composants/Accueil/Accueil';
+import Dashboard from './composants/DashBoard/Dashboard';
+import Details from './composants/Details/Details';
+import ChatBot from "./composants/Chat/ChatBot";
 
 function App() {
 
   return (
     <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Accueil />} />
-                <Route path="/dashboard" element={<Dashboard />}/>
-                <Route path="/details" element={<Details />}/>
-            </Routes>
-        </BrowserRouter>
+        <Routes>
+            <Route path="/VoitureAI/" element={<Accueil />} />
+            <Route path="/VoitureAI/dashboard" element={<Dashboard />}/>
+            <Route path="/VoitureAI/details/:id" element={<Details />}/>
+            <Route path="/VoitureAI/chatbot" element={<ChatBot/>}/>
+        </Routes>
+    </BrowserRouter>
   )
 }
 
