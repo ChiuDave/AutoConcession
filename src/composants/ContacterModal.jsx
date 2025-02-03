@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const ContacterModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -15,21 +15,28 @@ const ContacterModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate form submission (Replace this with an API call)
     console.log("Form submitted:", formData);
     alert("Message envoyé avec succès !");
     onClose(); // Close modal after submission
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+    <div className="fixed inset-0 bg-[rgba(240,240,240,0.50)] flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-xl"
+        >
+          ❌
+        </button>
+
         <h2 className="text-2xl font-semibold text-center mb-4">Nous Contacter</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Name Field */}
           <div>
-            <label className="block text-gray-700">Nom</label>
+            <label className="block text-gray-700 font-semibold">Nom:</label>
             <input
               type="text"
               name="name"
@@ -43,7 +50,7 @@ const ContacterModal = ({ isOpen, onClose }) => {
 
           {/* Email Field */}
           <div>
-            <label className="block text-gray-700">Email</label>
+            <label className="block text-gray-700 font-semibold">Email:</label>
             <input
               type="email"
               name="email"
@@ -57,7 +64,7 @@ const ContacterModal = ({ isOpen, onClose }) => {
 
           {/* Message Field */}
           <div>
-            <label className="block text-gray-700">Message</label>
+            <label className="block text-gray-700 font-semibold">Message:</label>
             <textarea
               name="message"
               value={formData.message}
@@ -77,14 +84,6 @@ const ContacterModal = ({ isOpen, onClose }) => {
             Envoyer
           </button>
         </form>
-
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-xl"
-        >
-          ✖
-        </button>
       </div>
     </div>
   );
