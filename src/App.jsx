@@ -7,12 +7,12 @@ import ChatBot from "./composants/Chat/ChatBot";
 function App() {
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/VoitureAI">
         <Routes>
-            <Route path="/VoitureAI/" element={<Accueil />} />
-            <Route path="/VoitureAI/dashboard" element={<Dashboard />}/>
-            <Route path="/VoitureAI/details/:id" element={<Details />}/>
-            <Route path="/VoitureAI/chatbot" element={<ChatBot/>}/>
+            <Route path="/" element={<Accueil />} />
+            <Route path="/dashboard" element={<Dashboard />}/>
+            <Route path="/details/:id" element={<Details />}/>
+            <Route path="/chatbot" element={<ChatBot/>}/>
         </Routes>
     </BrowserRouter>
   )
