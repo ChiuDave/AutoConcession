@@ -48,24 +48,74 @@ const Accueil = () => {
             </p>
           </div>
           <div className="flex-1 flex justify-center">
-            <img src="https://source.unsplash.com/600x400/?car" alt="Car" className="rounded-lg shadow-lg" />
+            <img src="https://img.freepik.com/premium-vector/drawing-car-with-hood-open-front-windshield-open_1230457-34358.jpg" alt="Car" className="rounded-lg shadow-lg" />
           </div>
         </section>
 
-        {/* About Section */}
-        <section id="about" className="h-screen flex flex-col justify-center items-center bg-gray-100 text-center px-10">
-          <h2 className="text-4xl font-semibold">À Propos</h2>
-          <p className="text-lg mt-4 max-w-3xl">
-            Nous révolutionnons le marché automobile en intégrant l'IA pour une expérience d'achat intuitive et personnalisée.
+        {/* Section: Voitures Aléatoires */}
+        <section id="random-cars" className="py-20 bg-gray-100 text-center px-10">
+          <h2 className="text-4xl font-semibold">Quelques Voitures Aléatoires</h2>
+          <p className="text-lg mt-4 max-w-3xl mx-auto">
+            Découvrez une sélection de voitures disponibles sur notre plateforme.
           </p>
+
+          {/* Grid de voitures */}
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {[1, 2, 3, 4, 5, 6].map((index) => (
+              <div key={index} className="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center">
+                <img 
+                  src={`https://source.unsplash.com/300x200/?car&sig=${index}`} 
+                  alt={`Voiture ${index}`} 
+                  className="rounded-lg mb-4 w-full"
+                />
+                <h3 className="text-xl font-semibold">Voiture #{index}</h3>
+                <p className="text-gray-600 mt-2">Modèle exclusif avec des performances optimales.</p>
+                <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                  Voir Détails
+                </button>
+              </div>
+            ))}
+          </div>
         </section>
 
+
+
         {/* Services Section */}
-        <section id="services" className="h-screen flex flex-col justify-center items-center bg-white text-center px-10">
+        <section id="services" className="py-20 bg-white text-center px-10">
           <h2 className="text-4xl font-semibold">Nos Services</h2>
-          <p className="text-lg mt-4 max-w-3xl">
+          <p className="text-lg mt-4 max-w-3xl mx-auto">
             Découvrez nos solutions avancées, de la recommandation intelligente à la recherche simplifiée de véhicules.
           </p>
+
+          {/* Services Cards */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Card 1: Achat et Vente de Voitures */}
+            <div className="bg-gray-100 p-6 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="https://source.unsplash.com/200x150/?car,sale" alt="Vente de voitures" className="rounded-lg mb-4" />
+              <h3 className="text-xl font-semibold">Achat et Vente de Voitures</h3>
+              <p className="text-gray-600 mt-2">
+                Trouvez la voiture parfaite ou vendez votre véhicule en toute simplicité grâce à notre plateforme optimisée.
+              </p>
+            </div>
+
+            {/* Card 2: Service Client de Qualité */}
+            <div className="bg-gray-100 p-6 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="https://source.unsplash.com/200x150/?customer,service" alt="Service client" className="rounded-lg mb-4" />
+              <h3 className="text-xl font-semibold">Service Client de Qualité</h3>
+              <p className="text-gray-600 mt-2">
+                Notre assistance est disponible 24/7 pour vous accompagner dans votre expérience d'achat ou de vente.
+              </p>
+            </div>
+
+            {/* Card 3: Recommandations Personnalisées */}
+            <div className="bg-gray-100 p-6 rounded-2xl shadow-lg flex flex-col items-center">
+              <img src="https://source.unsplash.com/200x150/?car,recommendation" alt="Recommandations intelligentes" className="rounded-lg mb-4" />
+              <h3 className="text-xl font-semibold">Recommandations Intelligentes</h3>
+              <p className="text-gray-600 mt-2">
+                Grâce à l'IA, nous vous suggérons des voitures adaptées à vos besoins et préférences en temps réel.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Contact Section */}
