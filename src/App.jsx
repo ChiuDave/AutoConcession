@@ -1,9 +1,7 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-//import './App.css'
-import Accueil from './composants/Accueil';
-import Dashboard from './composants/Dashboard';
-import Details from './composants/Details';
+import Accueil from './composants/Accueil/Accueil';
+import Dashboard from './composants/DashBoard/Dashboard';
+import Details from './composants/Details/Details';
 
 function App() {
 
