@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { sendEmail } from "./SendEmail"; // Import sendEmail function
 
 const ContacterModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -9,21 +10,31 @@ const ContacterModal = ({ isOpen, onClose }) => {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    alert("Message envoyé avec succès !");
-    onClose(); // Close modal after submission
+    setIsSubmitting(true);
+
+    const success = await sendEmail(formData);
+
+    if (success) {
+      alert("Message envoyé avec succès !");
+      onClose(); // Close modal after submission
+    } else {
+      alert("Une erreur est survenue lors de l'envoi de votre message.");
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
     <div className="fixed inset-0 bg-[rgba(240,240,240,0.50)] flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-xl"
@@ -34,7 +45,6 @@ const ContacterModal = ({ isOpen, onClose }) => {
         <h2 className="text-2xl font-semibold text-center mb-4">Nous Contacter</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name Field */}
           <div>
             <label className="block text-gray-700 font-semibold">Nom:</label>
             <input
@@ -48,7 +58,6 @@ const ContacterModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Email Field */}
           <div>
             <label className="block text-gray-700 font-semibold">Email:</label>
             <input
@@ -62,7 +71,6 @@ const ContacterModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Message Field */}
           <div>
             <label className="block text-gray-700 font-semibold">Message:</label>
             <textarea
@@ -76,12 +84,12 @@ const ContacterModal = ({ isOpen, onClose }) => {
             />
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            disabled={isSubmitting}
           >
-            Envoyer
+            {isSubmitting ? "Envoi en cours..." : "Envoyer"}
           </button>
         </form>
       </div>
