@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import ContacterModal from "../ContacterModal";
+import Footer from "../Footer/Footer"
 
 const Accueil = () => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -141,9 +142,7 @@ const Accueil = () => {
       </div>
 
       {/* Footer */}
-      <footer className="w-full bg-gray-800 text-white text-center py-6">
-        <p>&copy; {new Date().getFullYear()} Car IA. Tous droits réservés.</p>
-      </footer>
+      <Footer/>
     </div>
   );
 };

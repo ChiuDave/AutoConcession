@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import vehicule from "../../data/vehicles.json"; // Import vehicle data
+import Footer from "../Footer/Footer"
 
 const Dashboard = () => {
   const [filter, setFilter] = useState("");
@@ -115,9 +116,7 @@ const Dashboard = () => {
       </div>
 
       {/* Footer */}
-      <footer className="w-full bg-gray-800 text-white text-center py-6 mt-16">
-        <p>© 2025 Car IA - Tous droits réservés</p>
-      </footer>
+      <Footer/>
     </div>
   );
 };
