@@ -79,13 +79,14 @@ const Dashboard = () => {
        {/* Section: All Cars */}
         <div className="w-full max-w-6xl mt-16">
           <h2 className="text-2xl font-semibold mb-4">Voitures</h2>
-          
-          <div className="flex space-x-4 overflow-x-auto pb-4">
+
+          {/* Grid Layout */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {filteredCars.slice(0, visibleCount).map((car) => (
               <Link
                 key={car.id}
-                to={`/details/${car.VIN}`} // Link to details page
-                className="bg-white p-4 rounded-lg shadow-md min-w-[200px]"
+                to={`/details/${car.VIN}`}
+                className="bg-white p-4 rounded-lg shadow-md"
               >
                 <img src={car.image} alt={car.model} className="w-full rounded-lg" />
                 <p className="mt-2 font-semibold">{car.Make} {car.Model}</p>
@@ -97,13 +98,16 @@ const Dashboard = () => {
           {/* "Voir plus" Button */}
           {visibleCount < filteredCars.length && (
             <button
-              onClick={() => setVisibleCount(visibleCount + 10)}
+              onClick={() => setVisibleCount(visibleCount + 20)}
               className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
             >
               Voir plus
             </button>
           )}
         </div>
+
+
+
 
 
         {/* Additional Section for More Scrolling */}
