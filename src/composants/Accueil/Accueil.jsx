@@ -122,7 +122,7 @@ const Accueil = () => {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="h-screen flex flex-col justify-center items-center bg-gray-100 text-center px-10">
+        <section id="contact" className="py-20 flex flex-col justify-center items-center bg-gray-100 text-center px-10">
           <h2 className="text-4xl font-semibold">Contact</h2>
           <p className="text-lg mt-4 max-w-3xl">
             Vous avez une question ? Notre équipe est là pour vous aider à chaque étape.
