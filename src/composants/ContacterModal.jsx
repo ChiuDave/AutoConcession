@@ -7,13 +7,19 @@ const ContacterModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
+    preferredContact: "email", // Default to email
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -45,6 +51,7 @@ const ContacterModal = ({ isOpen, onClose }) => {
         <h2 className="text-2xl font-semibold text-center mb-4">Nous Contacter</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Name Field */}
           <div>
             <label className="block text-gray-700 font-semibold">Nom:</label>
             <input
@@ -58,6 +65,21 @@ const ContacterModal = ({ isOpen, onClose }) => {
             />
           </div>
 
+          {/* Phone Field */}
+          <div>
+            <label className="block text-gray-700 font-semibold">Téléphone:</label>
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              placeholder="Votre numéro de téléphone"
+            />
+          </div>
+
+          {/* Email Field */}
           <div>
             <label className="block text-gray-700 font-semibold">Email:</label>
             <input
@@ -71,6 +93,38 @@ const ContacterModal = ({ isOpen, onClose }) => {
             />
           </div>
 
+          {/* Preferred Contact Method */}
+          <div>
+            <label className="block text-gray-700 font-semibold mb-2 text-center">
+              Préférence de contact:
+            </label>
+            <div className="flex justify-center items-center gap-6">
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  name="preferredContact"
+                  value="phone"
+                  checked={formData.preferredContact === "phone"}
+                  onChange={handleChange}
+                  className="mr-2"
+                />
+                Téléphone
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  name="preferredContact"
+                  value="email"
+                  checked={formData.preferredContact === "email"}
+                  onChange={handleChange}
+                  className="mr-2"
+                />
+                Email
+              </label>
+            </div>
+          </div>
+
+          {/* Message Field */}
           <div>
             <label className="block text-gray-700 font-semibold">Message:</label>
             <textarea
@@ -84,6 +138,7 @@ const ContacterModal = ({ isOpen, onClose }) => {
             />
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
