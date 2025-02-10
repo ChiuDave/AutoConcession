@@ -13,9 +13,7 @@ const ChatBot = () => {
     setLoading(true);
 
     try {
-      console.log("API Route:", import.meta.env.VITE_ROUTE);
-
-      const response = await fetch(`${import.meta.env.VITE_ROUTE}/api/chat`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/chat`, {
         method: "POST",
         body: JSON.stringify({ message: input }),
         headers: {
