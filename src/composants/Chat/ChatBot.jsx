@@ -13,9 +13,7 @@ const ChatBot = () => {
     setLoading(true);
 
     try {
-      console.log("API Route:", import.meta.env.VITE_ROUTE);
-
-      const response = await fetch(`${import.meta.env.VITE_ROUTE}/api/chat`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/chat`, {
         method: "POST",
         body: JSON.stringify({ message: input }),
         headers: {
@@ -40,7 +38,7 @@ const ChatBot = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-md mx-auto border border-gray-300 rounded-lg p-4">
+    <div className="flex flex-col h-[75vh] max-w-md mx-auto p-4">
       <h1 className="text-center text-lg font-bold">ChatBot</h1>
 
       {/* Chat Messages */}
@@ -65,7 +63,7 @@ const ChatBot = () => {
       </div>
 
       {/* Input & Send Button */}
-      <div className="flex p-4">
+      <div className="flex p-4 justify-center">
         <input
           type="text"
           value={input}

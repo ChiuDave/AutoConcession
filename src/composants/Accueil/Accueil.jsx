@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import ContacterModal from "../ContacterModal";
 import Footer from "../Footer/Footer"
+import ChatBot from "../Chat/ChatBot"
 
 const Accueil = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isChatBotOpen, setIsChatBotOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,7 +108,7 @@ const Accueil = () => {
               <img src="https://source.unsplash.com/200x150/?customer,service" alt="Service client" className="rounded-lg mb-4" />
               <h3 className="text-xl font-semibold">Service Client de Qualité</h3>
               <p className="text-gray-600 mt-2">
-                Notre assistance est disponible 24/7 pour vous accompagner dans votre expérience d'achat ou de vente.
+                Notre assistance est disponible 24/7 pour vous accompagner dans votre expérience d&apos;achat ou de vente.
               </p>
             </div>
 
@@ -115,7 +117,7 @@ const Accueil = () => {
               <img src="https://source.unsplash.com/200x150/?car,recommendation" alt="Recommandations intelligentes" className="rounded-lg mb-4" />
               <h3 className="text-xl font-semibold">Recommandations Intelligentes</h3>
               <p className="text-gray-600 mt-2">
-                Grâce à l'IA, nous vous suggérons des voitures adaptées à vos besoins et préférences en temps réel.
+                Grâce à l&apos;IA, nous vous suggérons des voitures adaptées à vos besoins et préférences en temps réel.
               </p>
             </div>
           </div>
@@ -141,6 +143,19 @@ const Accueil = () => {
         </section>
       </div>
 
+      {/*Chatbot Integration*/}
+      <button onClick={() => setIsChatBotOpen(true)} className="fixed bottom-6 right-6 flex justify-between items-center bg-blue-600 text-white p-3 rounded-full" style={isChatBotOpen ? {"visibility": "hidden"} : {"visibility": "visible"}}>💬</button>
+      <div
+        className={`fixed bottom-6 right-6 w-80 bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 ${
+          isChatBotOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex justify-between items-center bg-blue-600 text-white p-3">
+          <h3 className="text-lg font-semibold">Chatbot</h3>
+          <button onClick={() => setIsChatBotOpen(false)} className="text-white text-xl font-bold">&times;</button>
+        </div>
+        <ChatBot />
+      </div>
       {/* Footer */}
       <Footer/>
     </div>
