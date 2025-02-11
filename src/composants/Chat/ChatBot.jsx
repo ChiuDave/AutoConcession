@@ -64,12 +64,13 @@ const ChatBot = () => {
 
       {/* Input & Send Button */}
       <div className="flex p-4 justify-center">
-        <input
+        <textarea
           type="text"
+          rows={1}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Type a message..."
-          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300 resize-none"
         />
         <button
           onClick={sendMessage}
