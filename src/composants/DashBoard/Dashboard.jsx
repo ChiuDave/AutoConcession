@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Filters from "./Filters/Filters";
 import CarCard from "./CarCard/CarCard";
+import ChatBot from "../Chat/ChatBot"
 
 const Dashboard = () => {
   const [filteredCars, setFilteredCars] = useState([]);
@@ -22,6 +22,7 @@ const Dashboard = () => {
   });
 
   const [data, setData] = useState([]);
+  const [isChatBotOpen, setIsChatBotOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,10 +97,22 @@ const Dashboard = () => {
          <div className="w-full max-w-6xl mt-16 mb-20">
           <h2 className="text-2xl font-semibold mb-4">Pourquoi nous choisir ?</h2>
           <p className="text-lg text-gray-700">
-            Nous offrons une sélection de voitures adaptées à vos besoins avec une expérience d'achat fluide et personnalisée.
+            Nous offrons une sélection de voitures adaptées à vos besoins avec une expérience d&apos;achat fluide et personnalisée.
             Nous offrons une sélection de voitures de qualité à des prix compétitifs. Trouvez la voiture de vos rêves grâce à nos filtres de recherche détaillés.
           </p>
         </div>
+      </div>
+      <button onClick={() => setIsChatBotOpen(true)} className="fixed bottom-6 right-6 flex justify-between items-center bg-blue-600 text-white p-3 rounded-full" style={isChatBotOpen ? {"visibility": "hidden"} : {"visibility": "visible"}}>💬</button>
+      <div
+        className={`fixed bottom-6 right-6 w-80 bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 ${
+          isChatBotOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex justify-between items-center bg-blue-600 text-white p-3">
+          <h3 className="text-lg font-semibold">Chatbot</h3>
+          <button onClick={() => setIsChatBotOpen(false)} className="text-white text-xl font-bold">&times;</button>
+        </div>
+        <ChatBot />
       </div>
       <Footer />
     </div>

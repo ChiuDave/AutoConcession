@@ -64,19 +64,20 @@ const ChatBot = () => {
 
       {/* Input & Send Button */}
       <div className="flex p-4 justify-center">
-        <input
+        <textarea
           type="text"
+          rows={1}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+          placeholder="Écrivez un message..."
+          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300 resize-none"
         />
         <button
           onClick={sendMessage}
           className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50"
           disabled={loading}
         >
-          Send
+          Envoyer
         </button>
       </div>
     </div>
