@@ -3,6 +3,7 @@ import Accueil from './composants/Accueil/Accueil';
 import Dashboard from './composants/DashBoard/Dashboard';
 import Details from './composants/Details/Details';
 import ChatBot from "./composants/Chat/ChatBot";
+import About from "./composants/About/About";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />}/>
             <Route path="/details/:id" element={<Details />}/>
             <Route path="/chatbot" element={<ChatBot/>}/>
+            <Route path="/about" element={<About/>}/>
         </Routes>
     </BrowserRouter>
   )
