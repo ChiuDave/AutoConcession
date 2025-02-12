@@ -22,9 +22,20 @@ const ContacterModal = ({ isOpen, onClose }) => {
     }));
   };
 
+  const validatePhoneNumber = (phone) => {
+    const phoneRegex = /^[0-9]{10}$/; // Adjust the regex according to your phone number format
+    return phoneRegex.test(phone);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    if (!validatePhoneNumber(formData.phone)) {
+      alert("Veuillez entrer un numéro de téléphone valide.");
+      setIsSubmitting(false);
+      return;
+    }
 
     const success = await sendEmail(formData);
 
