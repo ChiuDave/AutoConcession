@@ -73,6 +73,7 @@ const Details = () => {
             <div className="ml-6">
               <p className="text-lg">Price: <span className="font-bold text-blue-600">${carData.BookValue || "N/A"}</span></p>
               <p className="text-lg">Year: {carData.Year || "N/A"}</p>
+              <p className="text-lg">Miles: {carData.Miles || "N/A"} km</p>
             </div>
           </div>
         </div>
