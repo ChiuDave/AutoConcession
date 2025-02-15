@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../Navbar/Navbar"; // Ensure this file exists
 import Footer from "../Footer/Footer"; // Ensure this file exists
 import MapboxMap from "./MapboxMap";
-import ContacterModal from "../ContacterModal"; // Ensure this file exists
+import ContacterForm from "./ContacterForm"; // Ensure this file exists
 
 const Contact = () => {
     return (
@@ -25,7 +25,7 @@ const Contact = () => {
             {/* Contact Form Section (Fix) */}
             <div className="col-span-1 bg-white shadow-lg p-6 rounded-lg">
               <h2 className="text-xl font-semibold mb-4">Demande Express</h2>
-              <ContacterModal /> {/* Ensure this displays properly */}
+              <ContacterForm /> {/* Ensure this displays properly */}
             </div>
   
             {/* Contact Details with Schedules */}
