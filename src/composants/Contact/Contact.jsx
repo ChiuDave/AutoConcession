@@ -44,9 +44,9 @@ const Contact = () => {
               {/* Schedules */}
               <div className="mt-4">
                 <h3 className="text-lg font-semibold mb-2">Horaires</h3>
-                <p className="text-gray-700"><strong>🕒 Ventes:</strong> Mon-Sat 9:00 AM - 8:00 PM</p>
-                <p className="text-gray-700"><strong>🔧 Service:</strong> Mon-Fri 8:00 AM - 6:00 PM</p>
-                <p className="text-gray-700"><strong>🔩 Pièces:</strong> Mon-Fri 8:00 AM - 6:00 PM</p>
+                <p className="text-gray-700"><strong>🕒 Ventes:</strong> Lun-Sam 9:00 AM - 8:00 PM</p>
+                <p className="text-gray-700"><strong>🔧 Service:</strong> Lun-Ven 8:00 AM - 6:00 PM</p>
+                <p className="text-gray-700"><strong>🔩 Pièces:</strong> Lun-Ven 8:00 AM - 6:00 PM</p>
               </div>
   
               <p className="text-xs text-gray-500 mt-2">* Sans Frais</p>
