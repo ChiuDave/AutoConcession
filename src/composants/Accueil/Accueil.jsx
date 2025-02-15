@@ -81,10 +81,10 @@ const Accueil = () => {
             Découvrez une sélection de voitures disponibles sur notre plateforme.
           </p>
 
-          {/* Grid de voitures */}
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {cars.length > 0 ? (
-              cars.map((car) => (
+          {/* Check if there are cars, if so show the grid */}
+          {cars.length > 0 ? (
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              {cars.map((car) => (
                 <div key={car.VIN} className="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center">
                   <img
                     src={car.Image_Link || `https://source.unsplash.com/300x200/?car&sig=${car.VIN}`}
@@ -97,12 +97,16 @@ const Accueil = () => {
                     Voir Détails
                   </Link>
                 </div>
-              ))
-            ) : (
+              ))}
+            </div>
+          ) : (
+            // Loading message outside the grid
+            <div className="flex items-center justify-center h-1/2 w-full bg-gray-100 text-center">
               <p className="text-gray-500">Chargement des voitures...</p>
-            )}
-          </div>
+            </div>
+          )}
         </section>
+
 
          {/* Services Section */}
          <section id="services" className="py-20 bg-white text-center px-10">
