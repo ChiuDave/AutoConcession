@@ -13,9 +13,7 @@ const ChatBot = () => {
     setLoading(true);
 
     try {
-      console.log("API Route:", import.meta.env.VITE_ROUTE);
-
-      const response = await fetch(`${import.meta.env.VITE_ROUTE}/api/chat`, {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/chat`, {
         method: "POST",
         body: JSON.stringify({ message: input }),
         headers: {
@@ -40,7 +38,7 @@ const ChatBot = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-md mx-auto border border-gray-300 rounded-lg p-4">
+    <div className="flex flex-col h-[75vh] max-w-md mx-auto p-4">
       <h1 className="text-center text-lg font-bold">ChatBot</h1>
 
       {/* Chat Messages */}
@@ -65,20 +63,21 @@ const ChatBot = () => {
       </div>
 
       {/* Input & Send Button */}
-      <div className="flex p-4">
-        <input
+      <div className="flex p-4 justify-center">
+        <textarea
           type="text"
+          rows={1}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+          placeholder="Écrivez un message..."
+          className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-300 resize-none"
         />
         <button
           onClick={sendMessage}
           className="ml-2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50"
           disabled={loading}
         >
-          Send
+          Envoyer
         </button>
       </div>
     </div>
