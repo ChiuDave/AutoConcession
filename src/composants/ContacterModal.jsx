@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { sendEmail } from "./SendEmail"; // Import sendEmail function
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const ContacterModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -23,8 +25,29 @@ const ContacterModal = ({ isOpen, onClose }) => {
   };
 
   const validatePhoneNumber = (phone) => {
-    const phoneRegex = /^[0-9]{10}$/; // Adjust the regex according to your phone number format
+    const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/; // Adjust the regex according to your phone number format
     return phoneRegex.test(phone);
+  };
+
+  const formatPhoneNumber = (value) => {
+    if (!value) return value;
+
+    const phoneNumber = value.replace(/[^\d]/g, "");
+    const phoneNumberLength = phoneNumber.length;
+
+    if (phoneNumberLength < 4) return phoneNumber;
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
+  };
+
+  const handlePhoneChange = (e) => {
+    const formattedPhoneNumber = formatPhoneNumber(e.target.value);
+    setFormData((prev) => ({
+      ...prev,
+      phone: formattedPhoneNumber,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -32,7 +55,7 @@ const ContacterModal = ({ isOpen, onClose }) => {
     setIsSubmitting(true);
 
     if (!validatePhoneNumber(formData.phone)) {
-      alert("Veuillez entrer un numéro de téléphone valide.");
+      toast.error("Veuillez entrer un numéro de téléphone valide.");
       setIsSubmitting(false);
       return;
     }
@@ -40,10 +63,12 @@ const ContacterModal = ({ isOpen, onClose }) => {
     const success = await sendEmail(formData);
 
     if (success) {
-      alert("Message envoyé avec succès !");
-      onClose(); // Close modal after submission
+      toast.success("Message envoyé avec succès !");
+      setTimeout(() => {
+      onClose(); // Close modal after a delay
+      }, 1000); // 3 seconds delay
     } else {
-      alert("Une erreur est survenue lors de l'envoi de votre message.");
+      toast.error("Une erreur est survenue lors de l'envoi de votre message.");
     }
 
     setIsSubmitting(false);
@@ -83,7 +108,7 @@ const ContacterModal = ({ isOpen, onClose }) => {
               type="tel"
               name="phone"
               value={formData.phone}
-              onChange={handleChange}
+              onChange={handlePhoneChange} // Use handlePhoneChange here
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               placeholder="Votre numéro de téléphone"
@@ -158,6 +183,7 @@ const ContacterModal = ({ isOpen, onClose }) => {
             {isSubmitting ? "Envoi en cours..." : "Envoyer"}
           </button>
         </form>
+        <ToastContainer />
       </div>
     </div>
   );

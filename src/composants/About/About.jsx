@@ -1,4 +1,5 @@
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const teamMembers = [
   {
@@ -34,23 +35,23 @@ export default function About() {
 
       {/* About Section */}
       <div className="mt-10 max-w-5xl mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-center mb-6">Our Story</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">Notre Histoire</h2>
         <p className="text-lg text-gray-700 text-center">
-          CarAI Dealership started with a simple vision: to revolutionize the car-buying experience.
-          With decades of experience in the automotive industry, we saw the need for a smarter, more intuitive
-          way for customers to find their perfect car. By integrating cutting-edge AI technology, we ensure
-          that every customer gets personalized recommendations tailored to their preferences.
+          CarAI Dealership a commencé avec une vision simple : révolutionner l'expérience d'achat de voitures.
+          Avec des décennies d'expérience dans l'industrie automobile, nous avons vu le besoin d'une manière plus intelligente et intuitive
+          pour les clients de trouver leur voiture parfaite. En intégrant une technologie IA de pointe, nous nous assurons
+          que chaque client obtient des recommandations personnalisées adaptées à ses préférences.
         </p>
         <p className="text-lg text-gray-700 text-center mt-2">
-          Whether you're looking for a fuel-efficient commuter, a luxury ride, or a family SUV, our advanced
-          AutoMatch AI algorithm scans our extensive inventory to find the best match for you. If your dream
-          car isn't available, we'll suggest alternatives that meet your needs.
+          Que vous recherchiez une voiture économique, une voiture de luxe ou un SUV familial, notre algorithme avancé
+          AutoMatch AI scanne notre vaste inventaire pour trouver la meilleure correspondance pour vous. Si la voiture de vos rêves
+          n'est pas disponible, nous vous suggérerons des alternatives qui répondent à vos besoins.
         </p>
       </div>
 
       {/* Team Section */}
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-3xl font-bold text-center mb-6">Meet Our Team</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">Rencontrez Notre Équipe</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {teamMembers.map((member, index) => (
             <a
@@ -71,6 +72,7 @@ export default function About() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

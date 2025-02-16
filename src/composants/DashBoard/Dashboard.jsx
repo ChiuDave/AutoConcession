@@ -51,7 +51,8 @@ const Dashboard = () => {
     if (filters.make && filters.make !== "All Brands") 
       filtered = filtered.filter((car) => car.Make.toLowerCase().includes(filters.make.toLowerCase()));
     if (filters.year) filtered = filtered.filter((car) => car.Year === parseInt(filters.year));
-    if (filters.miles) filtered = filtered.filter((car) => car.Miles === parseInt(filters.miles));
+    if (filters.miles) filtered = filtered.sort((a, b) => Math.abs(a.Miles - filters.miles) - Math.abs(b.Miles - filters.miles));
+
     
     if (filters.exteriorColor) 
       filtered = filtered.filter((car) => (car.Ext_Color_Generic || "").toLowerCase().includes(filters.exteriorColor.toLowerCase()));
