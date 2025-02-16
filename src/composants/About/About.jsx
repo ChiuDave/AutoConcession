@@ -1,4 +1,5 @@
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 const teamMembers = [
   {
@@ -71,6 +72,7 @@ export default function About() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
