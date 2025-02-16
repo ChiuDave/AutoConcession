@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa"; // Import the back arrow icon
 import Navbar from '../Navbar/Navbar'; // Import Navbar
 import Footer from '../Footer/Footer'; // Import Footer
 
 const Details = () => {
   const { VIN } = useParams();
+  const navigate = useNavigate();
   const [car, setCar] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -62,7 +64,11 @@ const Details = () => {
       <Navbar />
       <div className="pt-20 px-6 flex flex-col items-center">
         {/* Hero Section */}
-        <div className="bg-gray-800 text-white p-8 rounded-lg shadow-lg mb-6 w-full max-w-6xl">
+        <div className="bg-gray-800 text-white p-8 rounded-lg shadow-lg mb-4 w-full max-w-6xl">
+        <FaArrowLeft
+          onClick={() => navigate('/dashboard')}
+          className="mb-6 text-2xl text-blue-500 cursor-pointer hover:text-blue-600"
+        />
           <h1 className="text-4xl font-bold">{carData.Make} {carData.Model}</h1>
           <div className="flex items-center mt-4">
             <img
@@ -79,7 +85,7 @@ const Details = () => {
         </div>
 
         {/* Key Information Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-8 w-full max-w-6xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-4 w-full max-w-6xl">
           <div className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold">Exterior Color</h2>
             <p>{carData.ExteriorColor || "N/A"}</p>
@@ -95,7 +101,7 @@ const Details = () => {
         </div>
 
         {/* Description Section */}
-        <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-6xl">
+        <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-6xl mb-4">
           <h2 className="text-xl font-semibold">Description</h2>
           <div className="mt-4">
             <ul className="list-disc pl-6 text-gray-700">
