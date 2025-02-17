@@ -10,6 +10,18 @@ const Accueil = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [cars, setCars] = useState([]);
+  const [filters, setFilters] = useState({
+    make: localStorage.getItem("make") || "",
+    model: localStorage.getItem("model") || "",
+    year: localStorage.getItem("year") || "",
+    exteriorColor: localStorage.getItem("exteriorColor") || "",
+    interiorColor: localStorage.getItem("interiorColor") || "",
+    fuelType: localStorage.getItem("fuelType") || "",
+    miles: localStorage.getItem("miles") || "",
+    vin: localStorage.getItem("vin") || "",
+    minPrice: localStorage.getItem("minPrice") || "",
+    maxPrice: localStorage.getItem("maxPrice") || "",
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,23 +44,45 @@ const Accueil = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-        const shuffledCars = result.sort(() => 0.5 - Math.random()).slice(0, 8);
-        setCars(shuffledCars);
-      } catch (error) {
-        console.error(error.message);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    };
 
-    fetchData();
-  }, []);
+      const result = await response.json();
+
+      const filteredCars = result.filter((car) => {
+        return filters.make ? car.Make === filters.make : true;
+      });
+
+      const shuffledFilteredCars = filteredCars.sort(() => 0.5 - Math.random());
+
+      const filteredPercentage = 2;
+      const randomFilteredCars = shuffledFilteredCars.slice(0, filteredPercentage);
+
+      const randomCars = result.sort(() => 0.5 - Math.random()).slice(0, 6);
+
+      const finalCars = [
+        ...randomFilteredCars,
+        ...randomCars
+      ];
+
+      // Shuffle the final list to mix filtered and random cars
+      const shuffledCars = finalCars.sort(() => 0.5 - Math.random());
+
+      // Set the first 8 cars in the state
+      setCars(shuffledCars.slice(0, 8));
+
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  fetchData();
+}, [filters]);
 
   return (
     <div className="min-h-screen flex flex-col">
