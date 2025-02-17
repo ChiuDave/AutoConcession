@@ -78,10 +78,16 @@ const Dashboard = () => {
         <Filters data={data} filters={filters} setFilters={setFilters} />
         <div className="w-full max-w-6xl mt-8">
           <h2 className="text-2xl font-semibold mb-4">Voitures</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {filteredCars.slice(0, visibleCount).map((car) => (
-              <CarCard key={car.VIN} car={car} />
-            ))}
+          <div>
+            {filteredCars.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                {filteredCars.slice(0, visibleCount).map((car) => (
+                  <CarCard key={car.VIN} car={car} />
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-gray-500">Aucune voiture disponible</p>
+            )}
           </div>
           {visibleCount < filteredCars.length && (
             <button
