@@ -29,8 +29,10 @@ const ChatBot = () => {
       console.log("Bot response:", json);
 
       setLoading(false);
-      setMessages((prevMessages) => [...prevMessages, { text: json.response, sender: "bot" }]);
-
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: json.response, sender: "bot" },
+      ]);
     } catch (error) {
       console.error("Error:", error.message);
       setLoading(false);
@@ -40,29 +42,25 @@ const ChatBot = () => {
   return (
     <div className="flex flex-col h-[75vh] max-w-md mx-auto p-4">
       <h1 className="text-center text-lg font-bold">ChatBot</h1>
-
-      {/* Chat Messages */}
       <div className="flex-1 overflow-y-auto p-4 border-b border-gray-300">
         {messages.map((msg, index) => (
-          <div key={index} className={`flex my-2 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
+          <div
+            key={index}
+            className={`flex my-2 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+          >
             <span
               className={`px-4 py-2 rounded-lg max-w-[80%] break-words 
                 ${msg.sender === "user" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-800"}`}
-            >
-              {msg.text}
-            </span>
+              dangerouslySetInnerHTML={{ __html: msg.text }}
+            />
           </div>
         ))}
-
-        {/* Typing Indicator */}
         {loading && (
           <div className="flex items-center space-x-2 bg-gray-100 rounded-lg p-2 my-2">
             <span className="text-gray-500 text-sm">Bot is typing...</span>
           </div>
         )}
       </div>
-
-      {/* Input & Send Button */}
       <div className="flex p-4 justify-center">
         <textarea
           type="text"
