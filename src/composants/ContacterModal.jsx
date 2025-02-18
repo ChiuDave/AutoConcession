@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { sendEmail } from "./SendEmail"; // Import sendEmail function
 import { ToastContainer, toast } from "react-toastify";

@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../Navbar/Navbar"; // Ensure this file exists
 import Footer from "../Footer/Footer"; // Ensure this file exists
 import MapboxMap from "./MapboxMap";

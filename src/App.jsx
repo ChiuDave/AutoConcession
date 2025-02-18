@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import Accueil from './composants/Accueil/Accueil';
 import Dashboard from './composants/DashBoard/Dashboard';
@@ -19,6 +19,7 @@ function App() {
               <Route path="/chatbot" element={<ChatBot/>}/>
               <Route path="/about" element={<About/>}/>
               <Route path="/contact" element={<Contact/>}/>
+              <Route path="*" element={<Navigate to="//" />} />
           </Routes>
       </BrowserRouter>
       {/* Chatbot Integration */}
