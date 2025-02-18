@@ -37,7 +37,7 @@ export default function About() {
       <div className="mt-10 max-w-5xl mx-auto px-6 py-12">
         <h2 className="text-3xl font-bold text-center mb-6">Notre Histoire</h2>
         <p className="text-lg text-gray-700 text-center">
-          CarAI Dealership a commencé avec une vision simple : révolutionner l'expérience d'achat de voitures.
+          AutoConcession a commencé avec une vision simple : révolutionner l'expérience d'achat de voitures.
           Avec des décennies d'expérience dans l'industrie automobile, nous avons vu le besoin d'une manière plus intelligente et intuitive
           pour les clients de trouver leur voiture parfaite. En intégrant une technologie IA de pointe, nous nous assurons
           que chaque client obtient des recommandations personnalisées adaptées à ses préférences.
