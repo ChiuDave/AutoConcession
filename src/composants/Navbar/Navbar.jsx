@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -6,7 +5,7 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-blue-600">Car IA</Link>
+        <Link to="/" className="text-2xl font-bold text-blue-600">AutoConcession</Link>
 
         {/* Navigation Links - Now Horizontal */}
         <ul className="flex space-x-6">

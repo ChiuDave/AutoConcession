@@ -31,7 +31,7 @@ const Contact = () => {
             {/* Contact Details with Schedules */}
             <div className="col-span-1 bg-white shadow-lg p-6 rounded-lg">
               <h2 className="text-xl font-semibold mb-4">Coordonnées</h2>
-              <p className="text-gray-700 mb-2">📍 <strong>Car IA</strong></p>
+              <p className="text-gray-700 mb-2">📍 <strong>AutoConcession</strong></p>
               <p className="text-gray-700">3800, Rue Sherbrooke Est</p>
               <p className="text-gray-700">Montréal, Québec H1X 2A2</p>
   

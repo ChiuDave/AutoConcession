@@ -11,7 +11,7 @@ function App() {
   const [isChatBotOpen, setIsChatBotOpen] = useState(false);
   return (
     <>
-      <BrowserRouter basename="/VoitureAI">
+      <BrowserRouter basename="/AutoConcession">
           <Routes>
               <Route path="/" element={<Accueil />} />
               <Route path="/dashboard" element={<Dashboard />}/>
