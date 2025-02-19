@@ -25,7 +25,13 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true",
+          }
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

@@ -14,7 +14,13 @@ const Details = () => {
   useEffect(() => {
     const fetchCarDetails = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database/vin/${VIN}`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database/vin/${VIN}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true",
+          }
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch car details");
         }
