@@ -2,15 +2,27 @@ import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import ContacterModal from "../ContacterModal";
 import Footer from "../Footer/Footer";
-import ChatBot from "../Chat/ChatBot";
 import { Link } from "react-router-dom";
+import Services from "./Services";
 
 const Accueil = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isChatBotOpen, setIsChatBotOpen] = useState(false);
+
   const [cars, setCars] = useState([]);
+  const [filters, setFilters] = useState({
+    make: localStorage.getItem("make") || "",
+    model: localStorage.getItem("model") || "",
+    year: localStorage.getItem("year") || "",
+    exteriorColor: localStorage.getItem("exteriorColor") || "",
+    interiorColor: localStorage.getItem("interiorColor") || "",
+    fuelType: localStorage.getItem("fuelType") || "",
+    miles: localStorage.getItem("miles") || "",
+    vin: localStorage.getItem("vin") || "",
+    minPrice: localStorage.getItem("minPrice") || "",
+    maxPrice: localStorage.getItem("maxPrice") || "",
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,23 +45,51 @@ const Accueil = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database`);
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "true",
         }
-        const result = await response.json();
-        const shuffledCars = result.sort(() => 0.5 - Math.random()).slice(0, 8);
-        setCars(shuffledCars);
-      } catch (error) {
-        console.error(error.message);
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    };
 
-    fetchData();
-  }, []);
+      const result = await response.json();
+
+      const filteredCars = result.filter((car) => {
+        return filters.make ? car.Make === filters.make : true;
+      });
+
+      const shuffledFilteredCars = filteredCars.sort(() => 0.5 - Math.random());
+
+      const filteredPercentage = 2;
+      const randomFilteredCars = shuffledFilteredCars.slice(0, filteredPercentage);
+
+      const randomCars = result.sort(() => 0.5 - Math.random()).slice(0, 6);
+
+      const finalCars = [
+        ...randomFilteredCars,
+        ...randomCars
+      ];
+
+      // Shuffle the final list to mix filtered and random cars
+      const shuffledCars = finalCars.sort(() => 0.5 - Math.random());
+
+      // Set the first 8 cars in the state
+      setCars(shuffledCars.slice(0, 8));
+
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  fetchData();
+}, [filters]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -107,44 +147,8 @@ const Accueil = () => {
           )}
         </section>
 
-
-         {/* Services Section */}
-         <section id="services" className="py-20 bg-white text-center px-10">
-          <h2 className="text-4xl font-semibold">Nos Services</h2>
-          <p className="text-lg mt-4 max-w-3xl mx-auto">
-            Découvrez nos solutions avancées, de la recommandation intelligente à la recherche simplifiée de véhicules.
-          </p>
-
-          {/* Services Cards */}
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Card 1: Achat et Vente de Voitures */}
-            <div className="bg-gray-100 p-6 rounded-2xl shadow-lg flex flex-col items-center">
-              <img src="https://media.istockphoto.com/id/1281648010/fr/vectoriel/car-deal-avec-lic%C3%B4ne-ou-le-logo-de-la-ligne-de-signe-de-secousse-de-main-concept-de.jpg?s=612x612&w=0&k=20&c=drRPfSpJs9wPcKSMxuNcBt-7_5ORkxGXyjtPR8mMsJw=" alt="Vente de voitures" className="rounded-lg mb-4" />
-              <h3 className="text-xl font-semibold">Achat et Vente de Voitures</h3>
-              <p className="text-gray-600 mt-2">
-                Trouvez la voiture parfaite ou vendez votre véhicule en toute simplicité grâce à notre plateforme optimisée.
-              </p>
-            </div>
-
-            {/* Card 2: Service Client de Qualité */}
-            <div className="bg-gray-100 p-6 rounded-2xl shadow-lg flex flex-col items-center">
-              <img src="https://cdn-icons-png.flaticon.com/512/950/950299.png" alt="Service client" className="rounded-lg mb-4" />
-              <h3 className="text-xl font-semibold">Service Client de Qualité</h3>
-              <p className="text-gray-600 mt-2">
-                Notre assistance est disponible 24/7 pour vous accompagner dans votre expérience d&apos;achat ou de vente.
-              </p>
-            </div>
-
-            {/* Card 3: Recommandations Personnalisées */}
-            <div className="bg-gray-100 p-6 rounded-2xl shadow-lg flex flex-col items-center">
-              <img src="https://static.vecteezy.com/system/resources/previews/042/407/049/non_2x/trendy-ai-model-vector.jpg" alt="Recommandations intelligentes" className="rounded-lg mb-4" />
-              <h3 className="text-xl font-semibold">Recommandations Intelligentes</h3>
-              <p className="text-gray-600 mt-2">
-                Grâce à l&apos;IA, nous vous suggérons des voitures adaptées à vos besoins et préférences en temps réel.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* Services Section */}
+        <Services/>
 
         {/* Contact Section */}
         <section id="contact" className="py-20 flex flex-col justify-center items-center bg-gray-100 text-center px-10">
@@ -161,21 +165,6 @@ const Accueil = () => {
           <ContacterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </section>
       </div>
-
-      {/* Chatbot Integration */}
-      <button onClick={() => setIsChatBotOpen(true)} className="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full" style={isChatBotOpen ? { visibility: "hidden" } : { visibility: "visible" }}>💬</button>
-      <div
-        className={`fixed bottom-6 right-6 w-80 bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 ${
-          isChatBotOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="flex justify-between items-center bg-blue-600 text-white p-3">
-          <h3 className="text-lg font-semibold">Chatbot</h3>
-          <button onClick={() => setIsChatBotOpen(false)} className="text-white text-xl font-bold">&times;</button>
-        </div>
-        <ChatBot />
-      </div>
-
       {/* Footer */}
       <Footer />
     </div>

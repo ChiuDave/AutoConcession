@@ -37,15 +37,15 @@ export default function About() {
       <div className="mt-10 max-w-5xl mx-auto px-6 py-12">
         <h2 className="text-3xl font-bold text-center mb-6">Notre Histoire</h2>
         <p className="text-lg text-gray-700 text-center">
-          CarAI Dealership a commencé avec une vision simple : révolutionner l'expérience d'achat de voitures.
-          Avec des décennies d'expérience dans l'industrie automobile, nous avons vu le besoin d'une manière plus intelligente et intuitive
+          AutoConcession a commencé avec une vision simple : révolutionner l&apos;expérience d&apos;achat de voitures.
+          Avec des décennies d&apos;expérience dans l&apos;industrie automobile, nous avons vu le besoin d&apos;une manière plus intelligente et intuitive
           pour les clients de trouver leur voiture parfaite. En intégrant une technologie IA de pointe, nous nous assurons
           que chaque client obtient des recommandations personnalisées adaptées à ses préférences.
         </p>
         <p className="text-lg text-gray-700 text-center mt-2">
           Que vous recherchiez une voiture économique, une voiture de luxe ou un SUV familial, notre algorithme avancé
           AutoMatch AI scanne notre vaste inventaire pour trouver la meilleure correspondance pour vous. Si la voiture de vos rêves
-          n'est pas disponible, nous vous suggérerons des alternatives qui répondent à vos besoins.
+          n&apos;est pas disponible, nous vous suggérerons des alternatives qui répondent à vos besoins.
         </p>
       </div>
 

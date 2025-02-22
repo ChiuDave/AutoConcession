@@ -3,7 +3,6 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Filters from "./Filters/Filters";
 import CarCard from "./CarCard/CarCard";
-import ChatBot from "../Chat/ChatBot"
 
 const Dashboard = () => {
   const [filteredCars, setFilteredCars] = useState([]);
@@ -22,12 +21,17 @@ const Dashboard = () => {
   });
 
   const [data, setData] = useState([]);
-  const [isChatBotOpen, setIsChatBotOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_API_ROUTE}/api/database`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true",
+          }
+        });
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -80,10 +84,16 @@ const Dashboard = () => {
         <Filters data={data} filters={filters} setFilters={setFilters} />
         <div className="w-full max-w-6xl mt-8">
           <h2 className="text-2xl font-semibold mb-4">Voitures</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {filteredCars.slice(0, visibleCount).map((car) => (
-              <CarCard key={car.VIN} car={car} />
-            ))}
+          <div>
+            {filteredCars.length > 0 ? (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                {filteredCars.slice(0, visibleCount).map((car) => (
+                  <CarCard key={car.VIN} car={car} />
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-gray-500">Aucune voiture disponible</p>
+            )}
           </div>
           {visibleCount < filteredCars.length && (
             <button
@@ -102,18 +112,6 @@ const Dashboard = () => {
             Nous offrons une sélection de voitures de qualité à des prix compétitifs. Trouvez la voiture de vos rêves grâce à nos filtres de recherche détaillés.
           </p>
         </div>
-      </div>
-      <button onClick={() => setIsChatBotOpen(true)} className="fixed bottom-6 right-6 flex justify-between items-center bg-blue-600 text-white p-3 rounded-full" style={isChatBotOpen ? {"visibility": "hidden"} : {"visibility": "visible"}}>💬</button>
-      <div
-        className={`fixed bottom-6 right-6 w-80 bg-white shadow-lg rounded-lg overflow-hidden transition-transform duration-300 ${
-          isChatBotOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="flex justify-between items-center bg-blue-600 text-white p-3">
-          <h3 className="text-lg font-semibold">Chatbot</h3>
-          <button onClick={() => setIsChatBotOpen(false)} className="text-white text-xl font-bold">&times;</button>
-        </div>
-        <ChatBot />
       </div>
       <Footer />
     </div>
