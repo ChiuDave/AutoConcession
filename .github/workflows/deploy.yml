@@ -17,6 +17,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
 
+      - name: Inject environment variables
+        run: |
+            echo "VITE_BACKEND_API_ROUTE=${{ secrets.VITE_BACKEND_API_ROUTE }}" >> .env
+            echo "VITE_EMAILJS_SERVICE_ID=${{ secrets.VITE_EMAILJS_SERVICE_ID }}" >> .env
+            echo "VITE_EMAILJS_CUSTOMER_TEMPLATE_ID=${{ secrets.VITE_EMAILJS_CUSTOMER_TEMPLATE_ID }}" >> .env
+            echo "VITE_EMAILJS_DEALER_TEMPLATE_ID=${{ secrets.VITE_EMAILJS_DEALER_TEMPLATE_ID }}" >> .env
+            echo "VITE_EMAILJS_PUBLIC_KEY=${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}" >> .env
+
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
