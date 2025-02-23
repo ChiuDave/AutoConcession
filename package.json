@@ -1,5 +1,5 @@
 {
-  "name": "car_ai",
+  "name": "auto_concession",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,11 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@sendgrid/mail": "^8.1.4",
     "@tailwindcss/vite": "^4.0.0",
     "car_ai": "file:",
+    "mapbox-gl": "^3.10.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
+    "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.28.2",
+    "react-toastify": "^11.0.3",
     "tailwindcss": "^4.0.0"
   },
   "devDependencies": {

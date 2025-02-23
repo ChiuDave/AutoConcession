@@ -1,8 +1,39 @@
-# React + Vite
+# VoitureAI Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prerequisites
 
-Currently, two official plugins are available:
+Make sure you have the following installed on your system:
+- Node.js (v14.x or later)
+- npm (v6.x or later) or yarn (v1.x or later)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/ChiuDave/VoitureAI.git
+    ```
+2. Navigate to the frontend directory:
+    ```sh
+    cd VoitureAI
+    ```
+3. Install the dependencies:
+    ```sh
+    npm install
+    ```
+    or if you are using yarn:
+    ```sh
+    yarn install
+    ```
+
+## Running the Application
+
+1. Start the development server:
+    ```sh
+    npx vite
+    ```
+    or if you are using yarn:
+    ```sh
+    yarn start
+    ```
+2. Open your browser and navigate to `http://localhost:5173/VoitureAI/` to see the application running.
+
