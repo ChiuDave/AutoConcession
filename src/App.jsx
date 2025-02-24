@@ -7,6 +7,7 @@ import ChatBot from "./composants/Chat/ChatBot";
 import About from "./composants/About/About";
 import Contact from "./composants/Contact/Contact";
 
+
 function App() {
   const [isChatBotOpen, setIsChatBotOpen] = useState(false);
   return (
