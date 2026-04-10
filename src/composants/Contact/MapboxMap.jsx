@@ -2,7 +2,10 @@ import { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiaW5jZHdhbiIsImEiOiJjbHV2ejFiNDYwN3c3MmlvNTBjbXAyY3E4In0.L4smj76jBXbuZNng4D7iTA';
+if (!import.meta.env.VITE_MAPBOX_TOKEN) {
+  console.error("VITE_MAPBOX_TOKEN is not configured");
+}
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
 const MapboxMap = () => {
   const mapContainerRef = useRef(null);
