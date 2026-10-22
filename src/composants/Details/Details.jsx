@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa"; // Import the back arrow icon
 import Navbar from '../Navbar/Navbar'; // Import Navbar
 import Footer from '../Footer/Footer'; // Import Footer
+import { getSafeExternalImageUrl } from "../../utils/safeExternalUrl";
 
 const Details = () => {
   const { VIN } = useParams();
@@ -78,7 +79,7 @@ const Details = () => {
           <h1 className="text-4xl font-bold">{carData.Make} {carData.Model}</h1>
           <div className="flex items-center mt-4">
             <img
-              src={carData.Image_Link || `https://source.unsplash.com/500x300/?car&${VIN}`}
+              src={getSafeExternalImageUrl(carData.Image_Link, `https://source.unsplash.com/500x300/?car&${VIN}`)}
               alt={`Car ${VIN}`}
               className="w-64 h-40 object-cover rounded-lg shadow-md"
             />

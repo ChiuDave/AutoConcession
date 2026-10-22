@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getSafeExternalImageUrl } from "../../utils/safeExternalUrl";
 
 const ChatBot = () => {
     const [messages, setMessages] = useState([]);
@@ -72,8 +73,8 @@ const ChatBot = () => {
                         {msg.type === "car" ? (
                             <div className="p-3 bg-white shadow rounded-lg max-w-xs">
                                 <p className="font-bold">{msg.make} {msg.model}</p>
-                                {msg.image_link && (
-                                    <img src={msg.image_link} alt={`${msg.make} ${msg.model}`} className="w-full h-auto rounded-lg my-2" />
+                                {msg.image_link && getSafeExternalImageUrl(msg.image_link) && (
+                                    <img src={getSafeExternalImageUrl(msg.image_link)} alt={`${msg.make} ${msg.model}`} className="w-full h-auto rounded-lg my-2" />
                                 )}
                                 <button
                                     onClick={() => navigate(`/details/${msg.vin}`)}

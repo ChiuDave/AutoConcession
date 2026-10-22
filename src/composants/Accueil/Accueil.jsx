@@ -4,6 +4,7 @@ import ContacterModal from "../ContacterModal";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import Services from "./Services";
+import { getSafeExternalImageUrl } from "../../utils/safeExternalUrl";
 
 const Accueil = () => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -127,7 +128,10 @@ useEffect(() => {
               {cars.map((car) => (
                 <div key={car.VIN} className="bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center">
                   <img
-                    src={car.Image_Link || `https://source.unsplash.com/300x200/?car&sig=${car.VIN}`}
+                    src={getSafeExternalImageUrl(
+                      car.Image_Link,
+                      `https://source.unsplash.com/300x200/?car&sig=${car.VIN}`
+                    )}
                     alt={`${car.Make} ${car.Model}`}
                     className="rounded-lg mb-4 w-full"
                   />
